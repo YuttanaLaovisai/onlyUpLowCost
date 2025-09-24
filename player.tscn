@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://c0cs8agjpaorb"]
+[gd_scene load_steps=6 format=3 uid="uid://c0cs8agjpaorb"]
 
 [ext_resource type="Script" uid="uid://br0bjy1ndb8qt" path="res://scripts/player.gd" id="1_onrkg"]
 [ext_resource type="PackedScene" uid="uid://de4ga2803ryo1" path="res://character/character.glb" id="2_i3pqv"]
+[ext_resource type="AudioStream" uid="uid://cwv8cce6x6vj" path="res://footstep-372877.mp3" id="3_i3pqv"]
+[ext_resource type="AudioStream" uid="uid://b27jsdplhcgxm" path="res://grunt-106134.mp3" id="4_hqtel"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hqtel"]
 radius = 0.186979
@@ -21,6 +23,8 @@ transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 0, -1.
 
 [node name="Camera3D" type="Camera3D" parent="Pivot"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0166576, -0.325309, 1.10804)
+
+[node name="AudioListener3D" type="AudioListener3D" parent="Pivot/Camera3D"]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -54,3 +58,11 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
 theme_override_font_sizes/font_size = 24
 text = "Objective : Climb to the top"
+
+[node name="walk" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_i3pqv")
+pitch_scale = 1.7
+parameters/looping = true
+
+[node name="jump" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_hqtel")

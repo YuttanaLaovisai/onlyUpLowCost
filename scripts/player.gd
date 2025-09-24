@@ -41,6 +41,7 @@ func _physics_process(delta: float) -> void:
 
 	# กระโดด
 	if Input.is_action_just_pressed("space") and is_on_floor():
+		$jump.play()
 		is_jumping = true
 		$character/AnimationPlayer.speed_scale = 1.5
 		anim.play("jump")
@@ -56,8 +57,12 @@ func _physics_process(delta: float) -> void:
 	if not is_jumping: # ❌ ห้ามเล่นทับ jump
 		if direction:
 			anim.play("walking")
+			if !$walk.playing and is_on_floor():
+				$walk.play()
 		else:
 			anim.play("2") # idle
+			#if !$walk.playing:
+			$walk.stop()
 
 	velocity.x = direction.x * speed
 	velocity.z = direction.z * speed
