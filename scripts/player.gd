@@ -14,6 +14,10 @@ func _ready() -> void:
 	anim.play("2") # idle
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
+func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.pressed:
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		yaw -= event.relative.x * 0.002
